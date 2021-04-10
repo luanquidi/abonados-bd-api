@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const morgan = require("morgan");
+// const morgan = require("morgan");
 
 const app = express();
 const { API_VERSION } = require("./config");
@@ -17,7 +17,7 @@ const productRoutes = require("./routes/product");
 //Middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
