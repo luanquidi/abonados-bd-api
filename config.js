@@ -12,4 +12,5 @@ module.exports = {
     SECRET_KEY,
     PASSWORD_DB,
     USER_DB
+    
 }
