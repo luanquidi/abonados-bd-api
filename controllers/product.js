@@ -34,8 +34,7 @@ exports.addProduct = async (req, res) => {
     product.price = price;
     product.category = category;
     product.stock = stock;
-    // return;
-
+    
     if (req.files) {
         let arrayImages = [];
         let arrayImagesNormales = [];
@@ -85,7 +84,7 @@ exports.addProduct = async (req, res) => {
 
 exports.editProduct = async(req, res) => {
     let arrayImagesNormales = [];
-    if (req.files) {
+    if (req.files && req.files.length > 0) {
         let cont = 0;
         let arrayImages = [];
         req.files.forEach(async(item, index) => {
