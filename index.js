@@ -12,12 +12,14 @@ const {
   USER_DB,
   PASSWORD_DB,
 } = require("./config");
-const urlDatabaseProd = `mongodb+srv://${USER_DB}:${PASSWORD_DB}@cluster0-2dg8m.mongodb.net/nava?retryWrites=true&w=majority`;
-// const urlDatabaseDev = `mongodb://${IP_SERVER}:${PORT_DB}/webpersonal`;
 
+
+// =================================================== URL CONEXIÓN A MONGO ==========================================================
+const urlDatabaseProd = `mongodb+srv://${USER_DB}:${PASSWORD_DB}@cluster0-2dg8m.mongodb.net/abonados?retryWrites=true&w=majority`;
 mongoose.set("useFindAndModify", false);
 
-// =================================================== CLOUDINARY ==========================================================
+
+// =================================================== CLOUDINARY CREDENCIALES ==========================================================
 const storage = multer.diskStorage({
   destination: path.join(__dirname, 'public/img/uploads'),
   filename: (req, file, cb, filename) => {
@@ -25,15 +27,15 @@ const storage = multer.diskStorage({
   }
 });
 
-// app.use(multer({ storage }).array('image'));
-
 cloudinary.config({
   cloud_name: 'dxc1pkofx',
   api_key: '338795214563965',
   api_secret: 'DAcYKBN2cgJPAFjhIc1f6YAVm3g'
 });
-// =================================================== CLOUDINARY ==========================================================
+// =================================================== CLOUDINARY CREDENCIALES ==========================================================
 
+
+// =================================================== CONEXIÓN A MONGO =================================================================
 mongoose.connect(
   urlDatabaseProd,
   {

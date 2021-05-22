@@ -6,13 +6,17 @@ const path = require("path");
 
 exports.signUp = (req, res) => {
   const user = new User();
-  const { name, lastname, email, password, repeatPassword } = req.body;
+  const { nombre, apellidos, correo, password, repeatPassword, numero_documento, tipo_documento, direccion, ciudad } = req.body;
 
-  user.name = name;
-  user.lastname = lastname;
-  user.email = email;
+  user.nombre = nombre;
+  user.apellidos = apellidos;
+  user.correo = correo;
   user.role = "usuario";
   user.active = true;
+  user.numero_documento = numero_documento;
+  user.tipo_documento = tipo_documento;
+  user.direccion = direccion;
+  user.ciudad = ciudad;
 
   if (!password || !repeatPassword) {
     res.status(404).send({ message: "Las contraseñas son obligatorias." });
@@ -53,10 +57,10 @@ exports.signUp = (req, res) => {
 
 exports.signIn = (req, res) => {
   const params = req.body;
-  const email = params.email.toLowerCase();
+  const correo = params.correo.toLowerCase();
   const password = params.password;
 
-  User.findOne({ email }, (err, userFound) => {
+  User.findOne({ correo }, (err, userFound) => {
     if (err) {
       return res.status(500).send({
         ok: false,
@@ -121,7 +125,7 @@ exports.updateUser = async (req, res) => {
   const { id } = req.params;
   const user = req.body;
 
-  user.email = user.email.toLowerCase();
+  user.correo = user.correo.toLowerCase();
 
   if (user.password) {
     await bcrypt.hash(user.password, null, null, (err, hash) => {
