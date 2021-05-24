@@ -25,12 +25,13 @@ exports.getEstadios = async (req, res) => {
 }
 
 exports.addEstadio = async (req, res) => {
-    const { nombre, latitud, longitud, espectadores } = req.body;
+    const { nombre, latitud, longitud, espectadores, ciudad } = req.body;
     const estadio = new Estadio();
     estadio.nombre = nombre;
     estadio.latitud = latitud;
     estadio.longitud = longitud;
     estadio.espectadores = espectadores;
+    estadio.ciudad = ciudad;
 
     estadio.save((err, estadioSaved) => {
         if (err) {

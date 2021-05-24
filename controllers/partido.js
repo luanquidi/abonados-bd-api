@@ -33,6 +33,7 @@ exports.addPartido = async (req, res) => {
     partido.equipo_local = equipo_local;
     partido.equipo_visita = equipo_visita;
 
+    console.log(partido);
     partido.save((err, partidoSaved) => {
         if (err) {
             return res.status(500).send({

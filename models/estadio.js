@@ -8,6 +8,7 @@ const EstadioSchema = Schema({
     latitud: Number,
     longitud: Number,
     espectadores: Number,
+    ciudad: String
 });
 
 module.exports = mongoose.model('Estadio', EstadioSchema);
