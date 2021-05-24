@@ -8,6 +8,10 @@ const PartidoSchema = Schema({
     hora: String,
     equipo_local: String,
     equipo_visita: String,
+    fk_estadio: {
+        type: Schema.Types.ObjectId,
+        ref: 'Estadio'
+    }
 });
 
 module.exports = mongoose.model('Partido', PartidoSchema);

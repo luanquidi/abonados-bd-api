@@ -25,16 +25,15 @@ exports.getAbonados = async (req, res) => {
             abonados: abonadosStored,
         });
 
-    }).populate({path:'fk_usuario fk_estadio fk_paquete fk_partidos', populate: {
+    }).populate({path:'fk_usuario fk_paquete fk_partidos', populate: {
         path: 'fk_partidos'
     }}).exec();
 }
 
 exports.addAbonado = async (req, res) => {
-    const { fk_usuario, fk_estadio, fk_paquete } = req.body;
+    const { fk_usuario, fk_paquete } = req.body;
     const abonado = new Abonado();
     abonado.fk_usuario = fk_usuario;
-    abonado.fk_estadio = fk_estadio;
     abonado.fk_paquete = fk_paquete;
 
     abonado.save((err, abonadoSaved) => {
@@ -133,5 +132,5 @@ exports.getAbonado = async (req, res) => {
             message: "Se ha listado el abonado correctamente.",
             abonado: abonadoFounded,
         });
-    }).populate('fk_usuario fk_estadio fk_paquete').exec();
+    }).populate('fk_usuario fk_paquete').exec();
 }

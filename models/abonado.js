@@ -8,10 +8,6 @@ const AbonadoSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    fk_estadio: {
-        type: Schema.Types.ObjectId,
-        ref: 'Estadio'
-    },
     fk_paquete: {
         type: Schema.Types.ObjectId,
         ref: 'Paquete'

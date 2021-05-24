@@ -21,17 +21,18 @@ exports.getEstadios = async (req, res) => {
             message: "Se han listado los estadios correctamente.",
             estadios: estadiosStored,
         });
-    });
+    }).populate('fk_estadio').exec();
 }
 
 exports.addEstadio = async (req, res) => {
-    const { nombre, latitud, longitud, espectadores, ciudad } = req.body;
+    const { nombre, latitud, longitud, espectadores, ciudad, fk_estadio } = req.body;
     const estadio = new Estadio();
     estadio.nombre = nombre;
     estadio.latitud = latitud;
     estadio.longitud = longitud;
     estadio.espectadores = espectadores;
     estadio.ciudad = ciudad;
+    estadio.fk_estadio = fk_estadio;
 
     estadio.save((err, estadioSaved) => {
         if (err) {
@@ -129,5 +130,5 @@ exports.getEstadio = async (req, res) => {
             message: "Se ha listado el estadio correctamente.",
             estadio: estadioFounded,
         });
-    });
+    }).populate('fk_estadio').exec();
 }
