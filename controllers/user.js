@@ -6,7 +6,7 @@ const path = require("path");
 
 exports.signUp = (req, res) => {
   const user = new User();
-  const { nombre, apellidos, correo, password, repeatPassword, numero_documento, tipo_documento, direccion, ciudad } = req.body;
+  const { nombre, apellidos, correo, password, repeatPassword, numero_documento, tipo_documento, direccion, ciudad, celular } = req.body;
 
   user.nombre = nombre;
   user.apellidos = apellidos;
@@ -17,6 +17,7 @@ exports.signUp = (req, res) => {
   user.tipo_documento = tipo_documento;
   user.direccion = direccion;
   user.ciudad = ciudad;
+  user.celular = celular;
 
   if (!password || !repeatPassword) {
     res.status(404).send({ message: "Las contraseñas son obligatorias." });

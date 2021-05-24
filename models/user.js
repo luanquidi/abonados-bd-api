@@ -11,6 +11,7 @@ const UserSchema = Schema({
         unique: true
     },
     password: String,
+    celular: String,
     role: String,
     active: Boolean,
     avatar: String,
