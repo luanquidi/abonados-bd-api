@@ -21,7 +21,7 @@ exports.getPartidos = async (req, res) => {
             message: "Se han listado los partidos correctamente.",
             partidos: partidosStored,
         });
-    });
+    }).populate('fk_estadio').exec();
 }
 
 exports.addPartido = async (req, res) => {
