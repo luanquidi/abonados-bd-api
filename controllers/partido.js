@@ -25,13 +25,14 @@ exports.getPartidos = async (req, res) => {
 }
 
 exports.addPartido = async (req, res) => {
-    const { fecha_partido, hora, equipo_local, equipo_visita } = req.body;
+    const { fecha_partido, hora, equipo_local, equipo_visita, fk_estadio } = req.body;
     const partido = new Partido();
     
     partido.fecha_partido = fecha_partido;
     partido.hora = hora;
     partido.equipo_local = equipo_local;
     partido.equipo_visita = equipo_visita;
+    partido.fk_estadio = fk_estadio;
 
     console.log(partido);
     partido.save((err, partidoSaved) => {
