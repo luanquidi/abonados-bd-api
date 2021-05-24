@@ -133,7 +133,9 @@ exports.getAbonado = async (req, res) => {
             message: "Se ha listado el abonado correctamente.",
             abonado: abonadoFounded,
         });
-    }).populate('fk_usuario fk_paquete').exec();
+    }).populate({path: 'fk_usuario fk_paquete', populate: {
+        path: 'fk_partidos'
+    }}).exec();
 }
 
 exports.getAbonosByUser = async (req, res) => {
