@@ -159,6 +159,8 @@ exports.getAbonosByUser = async (req, res) => {
             abonos: abonadosFounded,
         });
     }).populate({path:'fk_usuario fk_paquete', populate: {
-        path: 'fk_partidos'
+        path: 'fk_partidos', populate: {
+            path: 'fk_estadio'
+        }
     }}).exec();
 }
