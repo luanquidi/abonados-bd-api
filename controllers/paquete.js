@@ -130,3 +130,28 @@ exports.getPaquete = async (req, res) => {
         });
     }).populate('fk_partidos').exec();
 }
+
+exports.getPaquetesByUser = async (req, res) => {
+    const idUser = req.query.id;
+    Paquete.find({ fk_usuario: idUser }, (err, paquetesFouded) => {
+        if (err) {
+            return res.status(500).send({
+                ok: false,
+                message: "Error del servidor al listar paquetes.",
+            });
+        }
+
+        if (!paquetesFouded) {
+            return res.status(400).send({
+                ok: false,
+                message: "No se han podido listar los paquetes.",
+            });
+        }
+
+        return res.status(200).send({
+            ok: true,
+            message: "Se han listado los paquetes.",
+            abonos: paquetesFouded,
+        });
+    }).populate('fk_partidos').exec();
+}

@@ -1,4 +1,5 @@
 const { path } = require("../app");
+const { populate } = require("../models/abonado");
 const Abonado = require("../models/abonado");
 
 exports.getAbonados = async (req, res) => {
@@ -133,4 +134,31 @@ exports.getAbonado = async (req, res) => {
             abonado: abonadoFounded,
         });
     }).populate('fk_usuario fk_paquete').exec();
+}
+
+exports.getAbonosByUser = async (req, res) => {
+    const idUser = req.query.id;
+    Abonado.find({ fk_usuario: idUser }, (err, abonadosFounded) => {
+        if (err) {
+            return res.status(500).send({
+                ok: false,
+                message: "Error del servidor al listar abonado.",
+            });
+        }
+
+        if (!abonadosFounded) {
+            return res.status(400).send({
+                ok: false,
+                message: "No se ha podido listar el abonado.",
+            });
+        }
+        abonadosFounded[0].fk_usuario.password = ':)';
+        return res.status(200).send({
+            ok: true,
+            message: "Se han listado los abonos.",
+            abonos: abonadosFounded,
+        });
+    }).populate({path:'fk_usuario fk_paquete', populate: {
+        path: 'fk_partidos'
+    }}).exec();
 }

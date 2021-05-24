@@ -13,6 +13,7 @@ api.get("/abonados/get-abonado", AbonadoController.getAbonado);
 api.post("/abonados/add-abonado", [md_auth.ensureAuth], AbonadoController.addAbonado);
 api.post("/abonados/edit-abonado", [md_auth.ensureAuth], AbonadoController.editAbonado);
 api.post("/abonados/delete-abonado", [md_auth.ensureAuth], AbonadoController.deleteAbonado);
+api.get("/abonados/abonos-user", [md_auth.ensureAuth], AbonadoController.getAbonosByUser);
 
 // Export api
 module.exports = api;
